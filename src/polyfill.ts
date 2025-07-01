@@ -17,7 +17,7 @@ export const getPolyfillList = (userAgent: string) => {
         const {family, version} = resolveUserAgent(userAgent)
 
         return compat({
-            targets: `${family} ${parseMajorVersion(version)}`,
+            targets: `${family} >= ${parseMajorVersion(version)}`,
             version: '3',
         }).list
     } catch {
@@ -29,8 +29,10 @@ export const getPolyfillList = (userAgent: string) => {
     }
 }
 
-export const getPolyfillImportScript = (scripts: string[]) => {
-    return scripts.map(script => {
+export const getPolyfillImportScript = (scripts: string[], includeNext: boolean = false) => {
+    const targetScripts = includeNext ? scripts : scripts.filter(script => !script.startsWith('esnext.'))
+    
+    return targetScripts.map(script => {
         return `
             import "core-js/modules/${script}"
         `

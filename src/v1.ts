@@ -12,6 +12,7 @@ router.get('/polyfill.js', async (req, res) => {
   const polyfillList = getPolyfillList(userAgent)
   const polyfillImportScript = getPolyfillImportScript(polyfillList)
   const polyfillScript = await getPolyfillScript(polyfillImportScript)
+  // todo userAgent 를 키로 하여 polyfillScript 를 캐시하고 있으면 캐시된 스크립트를 반환하도록 해야함
   res.type('application/javascript')
   res.send(polyfillScript)
 })
