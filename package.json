@@ -15,9 +15,13 @@
   },
   "dependencies": {
     "browserslist-useragent": "^4.0.0",
-    "hyper-express": "^6.17.3"
+    "hyper-express": "^6.17.3",
+    "core-js": "^3.43.0",
+    "core-js-compat": "^3.43.0",
+    "esbuild": "^0.25.5"
   },
   "devDependencies": {
+    "@types/browserslist-useragent": "^3.0.7",
     "eslint": "^9.29.0",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.3",
