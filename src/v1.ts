@@ -4,7 +4,7 @@ import {getPolyfillList, getPolyfillImportScript, getPolyfillScript} from './pol
 const router = new Router()
 
 router.get('/', (req, res) => {
-  res.send('Wavve Dynamic Polyfill API v1')
+  res.send('Dynamic Polyfill API v1')
 })
 
 router.get('/polyfill.js', async (req, res) => {
