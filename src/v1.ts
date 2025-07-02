@@ -1,19 +1,46 @@
+/**
+ * /polyfill.js -> response a js file that contains polyfills for the userAgent in the request headers
+ * / -> health check
+ * @description Dynamic Polyfill API v1
+ */
+
 import {Router} from 'hyper-express'
 import {getPolyfillList, getPolyfillImportScript, getPolyfillScript} from './polyfill'
+import {createIsMaxRequest} from './is-max-request'
+import {createStorage} from 'unstorage'
+import memoryDriver from 'unstorage/drivers/memory'
+import {getCacheHeaders} from './get-cache-headers'
+import {setHeaders} from './set-headers'
+import {getUserAgent} from './get-user-agent'
 
 const router = new Router()
 
+const storage = createStorage({
+  driver: memoryDriver(),
+})
+
+const isMaxRequest = createIsMaxRequest(storage, {
+  maxRequests: 100,
+})
+
 router.get('/', (req, res) => {
-  res.send('Dynamic Polyfill API v1')
+  res.send('Dynamic Polyfill API v1 to get polyfills route is ./polyfill.js')
 })
 
 router.get('/polyfill.js', async (req, res) => {
-  const userAgent = req.headers['user-agent']
+  const userAgent = getUserAgent(req)
   const polyfillList = getPolyfillList(userAgent)
   const polyfillImportScript = getPolyfillImportScript(polyfillList)
   const polyfillScript = await getPolyfillScript(polyfillImportScript)
-  // todo userAgent 를 키로 하여 polyfillScript 를 캐시하고 있으면 캐시된 스크립트를 반환하도록 해야함
-  // 가능 하다면 cdn 으로 배포하고 있는 스크립트를 사용하도록 해야함
+  const shouldCache = await isMaxRequest(userAgent)
+
+  // CDN cache headers
+  // TODO: Modify getCacheHeaders according to the CDN being used
+  const cacheHeaders = getCacheHeaders(shouldCache)
+
+  setHeaders(res, cacheHeaders)
+
+  // js mime type
   res.type('application/javascript')
   res.send(polyfillScript)
 })
