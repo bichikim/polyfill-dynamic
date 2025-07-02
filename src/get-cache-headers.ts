@@ -1,3 +1,9 @@
+/**
+ * checked for Cloudflare, AWS CloudFront, Google Cloud, Azure, Fastly CDN
+ * @description Get cache headers for the response
+ * @param shouldCache - Whether to cache the response
+ * @returns Cache headers
+ */
 export const getCacheHeaders = (shouldCache: boolean) => {
     if (!shouldCache) {
         return {
