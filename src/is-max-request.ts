@@ -15,7 +15,7 @@ export interface IsMaxRequestOptions {
  * @param options - Optional configuration (default: { maxRequests: 100 })
  */
 export function createIsMaxRequest(
-  storage: Storage, 
+  storage: Storage<number>, 
   options: IsMaxRequestOptions = {}
 ) {
   const { maxRequests = DEFAULT_MAX_REQUESTS } = options

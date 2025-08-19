@@ -16,6 +16,11 @@
     "test:run": "vitest run"
   },
   "dependencies": {
+    "@babel/core": "^7.28.3",
+    "@babel/helper-compilation-targets": "^7.27.2",
+    "@babel/plugin-transform-runtime": "^7.28.3",
+    "@babel/preset-env": "^7.28.3",
+    "browserslist": "^4.25.3",
     "browserslist-useragent": "^4.0.0",
     "core-js": "^3.45.0",
     "core-js-compat": "^3.45.0",
@@ -24,7 +29,10 @@
     "unstorage": "^1.16.1"
   },
   "devDependencies": {
+    "@types/babel__core": "^7.20.5",
+    "@types/babel__preset-env": "^7.10.0",
     "@types/browserslist-useragent": "^3.0.7",
+    "@types/node": "^22.13.10",
     "@vitest/ui": "^3.2.4",
     "eslint": "^9.33.0",
     "eslint-config-prettier": "^10.1.8",

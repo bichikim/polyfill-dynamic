@@ -1222,6 +1222,7 @@ exports[`getPolyfillList > should return polyfill list for modern Chrome 1`] = `
 
 exports[`getPolyfillList > should return polyfill list for old Safari 1`] = `
 [
+  "es.promise.finally",
   "es.string.replace",
   "es.typed-array.float32-array",
   "es.typed-array.float64-array",
@@ -1305,6 +1306,8 @@ exports[`getPolyfillList > should return polyfill list for old Safari 1`] = `
   "esnext.set.union",
   "esnext.string.at",
   "esnext.string.code-points",
+  "esnext.string.match-all",
+  "esnext.string.replace-all",
   "esnext.symbol.dispose",
   "esnext.symbol.observable",
   "esnext.symbol.pattern-match",
@@ -1315,6 +1318,7 @@ exports[`getPolyfillList > should return polyfill list for old Safari 1`] = `
   "esnext.weak-set.delete-all",
   "esnext.weak-set.from",
   "esnext.weak-set.of",
+  "web.dom-collections.iterator",
   "web.immediate",
   "web.url",
   "web.url.to-json",

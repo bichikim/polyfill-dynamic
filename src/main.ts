@@ -1,5 +1,5 @@
 import {express, Router} from 'hyper-express'
-import v1 from '@/v1'
+import {createPolyfillRoute} from '@/v1'
 
 const app = express()
 
@@ -9,6 +9,10 @@ rootRouter.get('/', (req, res) => {
   res.send('Dynamic Polyfill API. Please use /api/v1')
 })
 
-app.use('/api/v1', v1).use('/', rootRouter)
+app.use('/api/v1', createPolyfillRoute({
+  cacheStrategy: {
+    type: 'cdn',
+  }
+})).use('/', rootRouter)
 
 app.listen(3000)
