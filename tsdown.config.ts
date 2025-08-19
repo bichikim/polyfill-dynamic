@@ -1,5 +1,5 @@
 import {defineConfig} from 'tsdown'
-import {$, Result} from 'execa'
+import {$} from 'execa'
 
 export default defineConfig({
   entry: ['./src/main.ts'],
